@@ -1,5 +1,5 @@
 {
- "engine": "macos-say-standin",
+ "engine": "azure-neural",
  "dialogues": [
   {
    "id": "w01-d01",
@@ -19,11 +19,11 @@
    ],
    "shadow": {
     "file": "w01-d01.shadow.m4a",
-    "dur": 32.81
+    "dur": 35.19
    },
    "cue": {
     "file": "w01-d01.cue.m4a",
-    "dur": 2.99
+    "dur": 3.71
    }
   },
   {
@@ -44,11 +44,11 @@
    ],
    "shadow": {
     "file": "w01-d02.shadow.m4a",
-    "dur": 36.65
+    "dur": 40.91
    },
    "cue": {
     "file": "w01-d02.cue.m4a",
-    "dur": 3.02
+    "dur": 3.53
    }
   },
   {
@@ -69,11 +69,11 @@
    ],
    "shadow": {
     "file": "w01-d03.shadow.m4a",
-    "dur": 41.01
+    "dur": 44.24
    },
    "cue": {
     "file": "w01-d03.cue.m4a",
-    "dur": 2.99
+    "dur": 3.49
    }
   },
   {
@@ -94,11 +94,11 @@
    ],
    "shadow": {
     "file": "w01-d04.shadow.m4a",
-    "dur": 39.5
+    "dur": 43.4
    },
    "cue": {
     "file": "w01-d04.cue.m4a",
-    "dur": 3.51
+    "dur": 3.95
    }
   },
   {
@@ -119,11 +119,11 @@
    ],
    "shadow": {
     "file": "w01-d05.shadow.m4a",
-    "dur": 35.41
+    "dur": 37.28
    },
    "cue": {
     "file": "w01-d05.cue.m4a",
-    "dur": 3.08
+    "dur": 3.64
    }
   }
  ],
@@ -135,12 +135,12 @@
    "note": null,
    "intro": {
     "file": "w01-d01-s01.intro.m4a",
-    "dur": 10.2
+    "dur": 10.49
    },
    "recall": {
     "file": "w01-d01-s01.recall.m4a",
-    "dur": 6.94,
-    "reveal": 4.36
+    "dur": 6.93,
+    "reveal": 4.33
    }
   },
   "w01-d01-s02": {
@@ -150,12 +150,12 @@
    "note": "ste is 'you are', formal or plural. Unlike Russian, the verb 'to be' is always said in the present.",
    "intro": {
     "file": "w01-d01-s02.intro.m4a",
-    "dur": 18.27
+    "dur": 19.71
    },
    "recall": {
     "file": "w01-d01-s02.recall.m4a",
-    "dur": 6.65,
-    "reveal": 4.18
+    "dur": 7.08,
+    "reveal": 4.59
    }
   },
   "w01-d01-s03": {
@@ -165,12 +165,12 @@
    "note": "'And' is in.",
    "intro": {
     "file": "w01-d01-s03.intro.m4a",
-    "dur": 28.19
+    "dur": 38.41
    },
    "recall": {
     "file": "w01-d01-s03.recall.m4a",
-    "dur": 12.02,
-    "reveal": 6.87
+    "dur": 15.83,
+    "reveal": 8.66
    }
   },
   "w01-d01-s04": {
@@ -180,12 +180,12 @@
    "note": null,
    "intro": {
     "file": "w01-d01-s04.intro.m4a",
-    "dur": 15.58
+    "dur": 17.46
    },
    "recall": {
     "file": "w01-d01-s04.recall.m4a",
-    "dur": 10.11,
-    "reveal": 5.92
+    "dur": 10.77,
+    "reveal": 6.17
    }
   },
   "w01-d01-s05": {
@@ -195,12 +195,12 @@
    "note": "Slovenian needs the verb: jaz sem, I am. You can drop jaz, but never sem.",
    "intro": {
     "file": "w01-d01-s05.intro.m4a",
-    "dur": 21.11
+    "dur": 22.14
    },
    "recall": {
     "file": "w01-d01-s05.recall.m4a",
-    "dur": 7.11,
-    "reveal": 4.08
+    "dur": 6.88,
+    "reveal": 4.02
    }
   },
   "w01-d01-s06": {
@@ -210,12 +210,12 @@
    "note": "Literally 'how to you is name'. The little words vam and je always sit in second position.",
    "intro": {
     "file": "w01-d01-s06.intro.m4a",
-    "dur": 26.14
+    "dur": 28.2
    },
    "recall": {
     "file": "w01-d01-s06.recall.m4a",
-    "dur": 7.97,
-    "reveal": 4.95
+    "dur": 8.2,
+    "reveal": 5.3
    }
   },
   "w01-d01-s07": {
@@ -225,12 +225,12 @@
    "note": null,
    "intro": {
     "file": "w01-d01-s07.intro.m4a",
-    "dur": 14.77
+    "dur": 16.14
    },
    "recall": {
     "file": "w01-d01-s07.recall.m4a",
-    "dur": 7.83,
-    "reveal": 4.61
+    "dur": 7.99,
+    "reveal": 4.79
    }
   },
   "w01-d01-s08": {
@@ -240,12 +240,12 @@
    "note": "Literally 'it gladdens me'.",
    "intro": {
     "file": "w01-d01-s08.intro.m4a",
-    "dur": 14.45
+    "dur": 15.74
    },
    "recall": {
     "file": "w01-d01-s08.recall.m4a",
-    "dur": 6.49,
-    "reveal": 3.97
+    "dur": 6.98,
+    "reveal": 4.3
    }
   },
   "w01-d01-s09": {
@@ -255,12 +255,12 @@
    "note": null,
    "intro": {
     "file": "w01-d01-s09.intro.m4a",
-    "dur": 9.53
+    "dur": 10.66
    },
    "recall": {
     "file": "w01-d01-s09.recall.m4a",
-    "dur": 7.13,
-    "reveal": 4.61
+    "dur": 7.9,
+    "reveal": 5.18
    }
   },
   "w01-d01-s10": {
@@ -270,12 +270,12 @@
    "note": "Locative after v, as in Russian: Ljubljana becomes v Ljubljani.",
    "intro": {
     "file": "w01-d01-s10.intro.m4a",
-    "dur": 25.07
+    "dur": 26.22
    },
    "recall": {
     "file": "w01-d01-s10.recall.m4a",
-    "dur": 8.28,
-    "reveal": 4.86
+    "dur": 8.25,
+    "reveal": 4.9
    }
   },
   "w01-d02-s01": {
@@ -285,12 +285,12 @@
    "note": "Izvolite is what staff say to invite your order. It also means 'here you are' when handing something over.",
    "intro": {
     "file": "w01-d02-s01.intro.m4a",
-    "dur": 19.33
+    "dur": 20.52
    },
    "recall": {
     "file": "w01-d02-s01.recall.m4a",
-    "dur": 6.65,
-    "reveal": 4.11
+    "dur": 6.67,
+    "reveal": 4.13
    }
   },
   "w01-d02-s02": {
@@ -300,12 +300,12 @@
    "note": "Accusative: ena kava becomes eno kavo.",
    "intro": {
     "file": "w01-d02-s02.intro.m4a",
-    "dur": 24.05
+    "dur": 29.5
    },
    "recall": {
     "file": "w01-d02-s02.recall.m4a",
-    "dur": 9.92,
-    "reveal": 5.7
+    "dur": 11.66,
+    "reveal": 6.52
    }
   },
   "w01-d02-s03": {
@@ -315,12 +315,12 @@
    "note": "Instrumental after z, as in Russian: z mlekom. And ali means 'or'.",
    "intro": {
     "file": "w01-d02-s03.intro.m4a",
-    "dur": 26.43
+    "dur": 28.48
    },
    "recall": {
     "file": "w01-d02-s03.recall.m4a",
-    "dur": 8.78,
-    "reveal": 5.0
+    "dur": 8.93,
+    "reveal": 5.27
    }
   },
   "w01-d02-s04": {
@@ -330,12 +330,12 @@
    "note": null,
    "intro": {
     "file": "w01-d02-s04.intro.m4a",
-    "dur": 14.52
+    "dur": 17.51
    },
    "recall": {
     "file": "w01-d02-s04.recall.m4a",
-    "dur": 9.32,
-    "reveal": 5.33
+    "dur": 10.75,
+    "reveal": 6.08
    }
   },
   "w01-d02-s05": {
@@ -345,12 +345,12 @@
    "note": "še is 'more' or 'still'. kaj is 'what', and also 'something'.",
    "intro": {
     "file": "w01-d02-s05.intro.m4a",
-    "dur": 16.62
+    "dur": 17.2
    },
    "recall": {
     "file": "w01-d02-s05.recall.m4a",
-    "dur": 6.11,
-    "reveal": 3.7
+    "dur": 6.12,
+    "reveal": 3.77
    }
   },
   "w01-d02-s06": {
@@ -360,12 +360,12 @@
    "note": null,
    "intro": {
     "file": "w01-d02-s06.intro.m4a",
-    "dur": 28.68
+    "dur": 37.22
    },
    "recall": {
     "file": "w01-d02-s06.recall.m4a",
-    "dur": 12.04,
-    "reveal": 6.83
+    "dur": 14.85,
+    "reveal": 8.28
    }
   },
   "w01-d02-s07": {
@@ -375,12 +375,12 @@
    "note": null,
    "intro": {
     "file": "w01-d02-s07.intro.m4a",
-    "dur": 10.29
+    "dur": 10.44
    },
    "recall": {
     "file": "w01-d02-s07.recall.m4a",
-    "dur": 6.87,
-    "reveal": 4.17
+    "dur": 6.84,
+    "reveal": 4.23
    }
   },
   "w01-d02-s08": {
@@ -390,12 +390,12 @@
    "note": "From five up, genitive plural, as in Russian: pet evrov.",
    "intro": {
     "file": "w01-d02-s08.intro.m4a",
-    "dur": 23.97
+    "dur": 25.93
    },
    "recall": {
     "file": "w01-d02-s08.recall.m4a",
-    "dur": 9.78,
-    "reveal": 5.7
+    "dur": 10.3,
+    "reveal": 6.02
    }
   },
   "w01-d02-s09": {
@@ -405,12 +405,12 @@
    "note": null,
    "intro": {
     "file": "w01-d02-s09.intro.m4a",
-    "dur": 9.3
+    "dur": 9.81
    },
    "recall": {
     "file": "w01-d02-s09.recall.m4a",
-    "dur": 6.16,
-    "reveal": 3.65
+    "dur": 6.36,
+    "reveal": 3.79
    }
   },
   "w01-d02-s10": {
@@ -420,12 +420,12 @@
    "note": "Na svidenje is built just like the Russian goodbye. Hvala lepa is literally 'beautiful thanks'.",
    "intro": {
     "file": "w01-d02-s10.intro.m4a",
-    "dur": 33.42
+    "dur": 43.33
    },
    "recall": {
     "file": "w01-d02-s10.recall.m4a",
-    "dur": 11.89,
-    "reveal": 6.84
+    "dur": 15.26,
+    "reveal": 8.36
    }
   },
   "w01-d03-s01": {
@@ -435,12 +435,12 @@
    "note": "jutro is morning. Careful: jutri means tomorrow.",
    "intro": {
     "file": "w01-d03-s01.intro.m4a",
-    "dur": 17.96
+    "dur": 19.36
    },
    "recall": {
     "file": "w01-d03-s01.recall.m4a",
-    "dur": 6.68,
-    "reveal": 3.87
+    "dur": 6.79,
+    "reveal": 3.97
    }
   },
   "w01-d03-s02": {
@@ -450,12 +450,12 @@
    "note": "Here ali opens a yes or no question. And Slovenian uses a normal verb for 'to have': imam, imate.",
    "intro": {
     "file": "w01-d03-s02.intro.m4a",
-    "dur": 26.84
+    "dur": 29.72
    },
    "recall": {
     "file": "w01-d03-s02.recall.m4a",
-    "dur": 7.98,
-    "reveal": 4.59
+    "dur": 8.12,
+    "reveal": 4.7
    }
   },
   "w01-d03-s03": {
@@ -465,12 +465,12 @@
    "note": null,
    "intro": {
     "file": "w01-d03-s03.intro.m4a",
-    "dur": 31.99
+    "dur": 35.63
    },
    "recall": {
     "file": "w01-d03-s03.recall.m4a",
-    "dur": 13.01,
-    "reveal": 7.29
+    "dur": 13.87,
+    "reveal": 7.83
    }
   },
   "w01-d03-s04": {
@@ -480,12 +480,12 @@
    "note": null,
    "intro": {
     "file": "w01-d03-s04.intro.m4a",
-    "dur": 18.73
+    "dur": 22.79
    },
    "recall": {
     "file": "w01-d03-s04.recall.m4a",
-    "dur": 10.38,
-    "reveal": 5.97
+    "dur": 11.94,
+    "reveal": 6.71
    }
   },
   "w01-d03-s05": {
@@ -495,12 +495,12 @@
    "note": "rogljiček is a little horn, a croissant.",
    "intro": {
     "file": "w01-d03-s05.intro.m4a",
-    "dur": 26.59
+    "dur": 28.37
    },
    "recall": {
     "file": "w01-d03-s05.recall.m4a",
-    "dur": 9.97,
-    "reveal": 5.84
+    "dur": 10.27,
+    "reveal": 6.06
    }
   },
   "w01-d03-s06": {
@@ -510,12 +510,12 @@
    "note": "nimamo is 'we don't have', and it takes the genitive, like the Russian 'there is no': nimamo rogljičkov.",
    "intro": {
     "file": "w01-d03-s06.intro.m4a",
-    "dur": 42.74
+    "dur": 45.88
    },
    "recall": {
     "file": "w01-d03-s06.recall.m4a",
-    "dur": 13.46,
-    "reveal": 7.75
+    "dur": 13.76,
+    "reveal": 8.06
    }
   },
   "w01-d03-s07": {
@@ -525,12 +525,12 @@
    "note": "This is the dual. Two of anything has its own ending: dva bureka.",
    "intro": {
     "file": "w01-d03-s07.intro.m4a",
-    "dur": 24.18
+    "dur": 28.53
    },
    "recall": {
     "file": "w01-d03-s07.recall.m4a",
-    "dur": 8.43,
-    "reveal": 4.86
+    "dur": 9.4,
+    "reveal": 5.39
    }
   },
   "w01-d03-s08": {
@@ -540,12 +540,12 @@
    "note": null,
    "intro": {
     "file": "w01-d03-s08.intro.m4a",
-    "dur": 9.59
+    "dur": 9.75
    },
    "recall": {
     "file": "w01-d03-s08.recall.m4a",
-    "dur": 6.44,
-    "reveal": 3.9
+    "dur": 6.47,
+    "reveal": 4.01
    }
   },
   "w01-d03-s09": {
@@ -555,12 +555,12 @@
    "note": null,
    "intro": {
     "file": "w01-d03-s09.intro.m4a",
-    "dur": 22.0
+    "dur": 29.3
    },
    "recall": {
     "file": "w01-d03-s09.recall.m4a",
-    "dur": 12.59,
-    "reveal": 7.34
+    "dur": 15.69,
+    "reveal": 8.6
    }
   },
   "w01-d03-s10": {
@@ -570,12 +570,12 @@
    "note": null,
    "intro": {
     "file": "w01-d03-s10.intro.m4a",
-    "dur": 16.32
+    "dur": 17.68
    },
    "recall": {
     "file": "w01-d03-s10.recall.m4a",
-    "dur": 9.21,
-    "reveal": 5.66
+    "dur": 9.51,
+    "reveal": 5.74
    }
   },
   "w01-d04-s01": {
@@ -585,12 +585,12 @@
    "note": null,
    "intro": {
     "file": "w01-d04-s01.intro.m4a",
-    "dur": 17.12
+    "dur": 17.28
    },
    "recall": {
     "file": "w01-d04-s01.recall.m4a",
-    "dur": 9.59,
-    "reveal": 5.82
+    "dur": 9.38,
+    "reveal": 5.88
    }
   },
   "w01-d04-s02": {
@@ -600,12 +600,12 @@
    "note": null,
    "intro": {
     "file": "w01-d04-s02.intro.m4a",
-    "dur": 31.19
+    "dur": 37.76
    },
    "recall": {
     "file": "w01-d04-s02.recall.m4a",
-    "dur": 12.65,
-    "reveal": 7.09
+    "dur": 14.37,
+    "reveal": 7.99
    }
   },
   "w01-d04-s03": {
@@ -615,12 +615,12 @@
    "note": "Dual again: sta is 'the two of them are', and stara has the dual ending. For three or more it would be so stari.",
    "intro": {
     "file": "w01-d04-s03.intro.m4a",
-    "dur": 28.23
+    "dur": 29.3
    },
    "recall": {
     "file": "w01-d04-s03.recall.m4a",
-    "dur": 9.49,
-    "reveal": 5.84
+    "dur": 9.19,
+    "reveal": 5.9
    }
   },
   "w01-d04-s04": {
@@ -630,12 +630,12 @@
    "note": "False friend: leto is a year, not summer. Summer is poletje.",
    "intro": {
     "file": "w01-d04-s04.intro.m4a",
-    "dur": 30.93
+    "dur": 34.05
    },
    "recall": {
     "file": "w01-d04-s04.recall.m4a",
-    "dur": 9.83,
-    "reveal": 5.73
+    "dur": 10.37,
+    "reveal": 6.1
    }
   },
   "w01-d04-s05": {
@@ -645,12 +645,12 @@
    "note": "pa marks a contrast and comes second. Three and four take leta; five and up take let.",
    "intro": {
     "file": "w01-d04-s05.intro.m4a",
-    "dur": 28.34
+    "dur": 31.62
    },
    "recall": {
     "file": "w01-d04-s05.recall.m4a",
-    "dur": 9.26,
-    "reveal": 5.28
+    "dur": 9.95,
+    "reveal": 5.72
    }
   },
   "w01-d04-s06": {
@@ -660,12 +660,12 @@
    "note": null,
    "intro": {
     "file": "w01-d04-s06.intro.m4a",
-    "dur": 15.02
+    "dur": 15.72
    },
    "recall": {
     "file": "w01-d04-s06.recall.m4a",
-    "dur": 9.01,
-    "reveal": 5.69
+    "dur": 9.37,
+    "reveal": 6.05
    }
   },
   "w01-d04-s07": {
@@ -675,12 +675,12 @@
    "note": null,
    "intro": {
     "file": "w01-d04-s07.intro.m4a",
-    "dur": 28.4
+    "dur": 41.98
    },
    "recall": {
     "file": "w01-d04-s07.recall.m4a",
-    "dur": 14.5,
-    "reveal": 8.31
+    "dur": 20.72,
+    "reveal": 11.13
    }
   },
   "w01-d04-s08": {
@@ -690,12 +690,12 @@
    "note": "delati means to work, not just to do.",
    "intro": {
     "file": "w01-d04-s08.intro.m4a",
-    "dur": 15.98
+    "dur": 16.77
    },
    "recall": {
     "file": "w01-d04-s08.recall.m4a",
-    "dur": 7.22,
-    "reveal": 4.7
+    "dur": 7.59,
+    "reveal": 5.03
    }
   },
   "w01-d04-s09": {
@@ -705,12 +705,12 @@
    "note": null,
    "intro": {
     "file": "w01-d04-s09.intro.m4a",
-    "dur": 9.64
+    "dur": 10.9
    },
    "recall": {
     "file": "w01-d04-s09.recall.m4a",
-    "dur": 6.46,
-    "reveal": 3.91
+    "dur": 7.06,
+    "reveal": 4.3
    }
   },
   "w01-d04-s10": {
@@ -720,12 +720,12 @@
    "note": "False friend: družina means family.",
    "intro": {
     "file": "w01-d04-s10.intro.m4a",
-    "dur": 24.37
+    "dur": 26.07
    },
    "recall": {
     "file": "w01-d04-s10.recall.m4a",
-    "dur": 9.82,
-    "reveal": 6.02
+    "dur": 10.18,
+    "reveal": 6.38
    }
   },
   "w01-d05-s01": {
@@ -735,12 +735,12 @@
    "note": "ura is both hour and clock. Literally 'how much is the hour'.",
    "intro": {
     "file": "w01-d05-s01.intro.m4a",
-    "dur": 20.75
+    "dur": 22.96
    },
    "recall": {
     "file": "w01-d05-s01.recall.m4a",
-    "dur": 7.07,
-    "reveal": 4.14
+    "dur": 7.39,
+    "reveal": 4.43
    }
   },
   "w01-d05-s02": {
@@ -750,12 +750,12 @@
    "note": null,
    "intro": {
     "file": "w01-d05-s02.intro.m4a",
-    "dur": 9.49
+    "dur": 10.91
    },
    "recall": {
     "file": "w01-d05-s02.recall.m4a",
-    "dur": 6.36,
-    "reveal": 3.88
+    "dur": 7.09,
+    "reveal": 4.31
    }
   },
   "w01-d05-s03": {
@@ -765,12 +765,12 @@
    "note": "False friend: čas is time in general, not an hour. An hour is ura.",
    "intro": {
     "file": "w01-d05-s03.intro.m4a",
-    "dur": 27.78
+    "dur": 28.49
    },
    "recall": {
     "file": "w01-d05-s03.recall.m4a",
-    "dur": 10.17,
-    "reveal": 6.24
+    "dur": 9.98,
+    "reveal": 6.34
    }
   },
   "w01-d05-s04": {
@@ -780,12 +780,12 @@
    "note": "Genitive after nimam: čas becomes časa.",
    "intro": {
     "file": "w01-d05-s04.intro.m4a",
-    "dur": 26.44
+    "dur": 27.57
    },
    "recall": {
     "file": "w01-d05-s04.recall.m4a",
-    "dur": 9.3,
-    "reveal": 5.42
+    "dur": 9.23,
+    "reveal": 5.47
    }
   },
   "w01-d05-s05": {
@@ -795,12 +795,12 @@
    "note": null,
    "intro": {
     "file": "w01-d05-s05.intro.m4a",
-    "dur": 10.55
+    "dur": 11.44
    },
    "recall": {
     "file": "w01-d05-s05.recall.m4a",
-    "dur": 7.09,
-    "reveal": 4.36
+    "dur": 7.49,
+    "reveal": 4.63
    }
   },
   "w01-d05-s06": {
@@ -810,12 +810,12 @@
    "note": null,
    "intro": {
     "file": "w01-d05-s06.intro.m4a",
-    "dur": 13.27
+    "dur": 14.37
    },
    "recall": {
     "file": "w01-d05-s06.recall.m4a",
-    "dur": 8.66,
-    "reveal": 5.09
+    "dur": 9.04,
+    "reveal": 5.28
    }
   },
   "w01-d05-s07": {
@@ -825,12 +825,12 @@
    "note": "greva is 'the two of us go'. With three or more people it is gremo.",
    "intro": {
     "file": "w01-d05-s07.intro.m4a",
-    "dur": 23.26
+    "dur": 25.01
    },
    "recall": {
     "file": "w01-d05-s07.recall.m4a",
-    "dur": 9.09,
-    "reveal": 5.94
+    "dur": 9.57,
+    "reveal": 6.34
    }
   },
   "w01-d05-s08": {
@@ -840,12 +840,12 @@
    "note": null,
    "intro": {
     "file": "w01-d05-s08.intro.m4a",
-    "dur": 14.31
+    "dur": 14.92
    },
    "recall": {
     "file": "w01-d05-s08.recall.m4a",
-    "dur": 9.24,
-    "reveal": 5.35
+    "dur": 9.35,
+    "reveal": 5.46
    }
   },
   "w01-d05-s09": {
@@ -855,12 +855,12 @@
    "note": "Clock times use ob plus locative: ob petih, at five.",
    "intro": {
     "file": "w01-d05-s09.intro.m4a",
-    "dur": 24.69
+    "dur": 25.77
    },
    "recall": {
     "file": "w01-d05-s09.recall.m4a",
-    "dur": 8.98,
-    "reveal": 5.41
+    "dur": 8.83,
+    "reveal": 5.43
    }
   },
   "w01-d05-s10": {
@@ -870,35 +870,35 @@
    "note": "se vidiva is dual again: 'the two of us see each other'.",
    "intro": {
     "file": "w01-d05-s10.intro.m4a",
-    "dur": 29.34
+    "dur": 39.0
    },
    "recall": {
     "file": "w01-d05-s10.recall.m4a",
-    "dur": 10.75,
-    "reveal": 6.08
+    "dur": 14.3,
+    "reveal": 7.79
    }
   }
  },
  "cues": {
   "review": {
    "file": "cue.review.m4a",
-   "dur": 4.72
+   "dur": 5.33
   },
   "recall": {
    "file": "cue.recall.m4a",
-   "dur": 2.13
+   "dur": 2.34
   },
   "again": {
    "file": "cue.again.m4a",
-   "dur": 3.07
+   "dur": 3.28
   },
   "shadow": {
    "file": "cue.shadow.m4a",
-   "dur": 4.2
+   "dur": 4.53
   },
   "done": {
    "file": "cue.done.m4a",
-   "dur": 2.26
+   "dur": 2.37
   }
  }
 }

@@ -14,7 +14,7 @@ Voices: Azure neural voices (Petra and Rok for Slovenian) when AZURE_SPEECH_KEY 
 
 Usage: python3 tools/build_audio.py [--dry-run]   (--dry-run only reports which voice engine would be used)
 """
-import array, hashlib, json, os, re, subprocess, sys, time, urllib.error, urllib.request, wave
+import array, hashlib, http.client, json, os, re, subprocess, sys, time, urllib.error, urllib.request, wave
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -79,7 +79,9 @@ def azure_tts(text: str, lang: str, slow: bool, speaker: str, dest: Path) -> Non
             if e.code in (401, 403):
                 sys.exit(f"\nAzure refused the key (HTTP {e.code}). Check AZURE_SPEECH_KEY and AZURE_SPEECH_REGION in .env.")
             sys.exit(f"\nAzure error HTTP {e.code} for: {text!r}")
-    sys.exit("\nAzure kept rate-limiting; try again later.")
+        except (urllib.error.URLError, http.client.HTTPException, OSError):
+            time.sleep(5 * (attempt + 1)); continue   # dropped or incomplete connection: try again
+    sys.exit("\nAzure kept failing (rate limit or network); run the build again to resume.")
 
 
 def synth(text: str, lang: str, slow: bool = False, speaker: str = "f") -> bytes:
