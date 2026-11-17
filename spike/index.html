@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#000000">
+<title>M0 Audio Spike</title>
+<style>
+  :root { --bg:#000; --fg:#fff; --mut:#9a9a9a; --acc:#ffd23f; --ok:#4cd964; --bad:#ff5a5a; --card:#141414; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:18px/1.45 -apple-system, system-ui, sans-serif;
+         padding: max(16px, env(safe-area-inset-top)) 16px 40px; }
+  h1 { font-size:24px; margin:0 0 4px; }
+  h2 { font-size:20px; margin:0 0 6px; color:var(--acc); }
+  p, li { color:#ddd; }
+  .mut { color:var(--mut); font-size:15px; }
+  section { background:var(--card); border-radius:14px; padding:16px; margin:14px 0; }
+  button { display:block; width:100%; min-height:56px; margin:8px 0; border:0; border-radius:12px;
+           background:#2a2a2a; color:var(--fg); font-size:18px; font-weight:600; }
+  button.primary { background:var(--acc); color:#000; }
+  button:active { opacity:.7; }
+  select, input[type=text] { width:100%; min-height:48px; font-size:17px; background:#222; color:var(--fg);
+           border:1px solid #444; border-radius:10px; padding:8px; }
+  .res { font-weight:700; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); }
+  #log { white-space:pre-wrap; font:13px/1.4 ui-monospace, Menlo, monospace; background:#0b0b0b; border:1px solid #333;
+         border-radius:10px; padding:10px; max-height:50vh; overflow:auto; }
+  .row { display:flex; gap:8px; } .row button { flex:1; }
+  #transcript { font-size:22px; min-height:1.5em; }
+</style>
+</head>
+<body>
+<h1>M0: Audio feasibility spike</h1>
+<p class="mut">Four checks for the Slovenian walking trainer. Everything is logged on the phone and survives a reload. When you're done, tap <b>Copy report</b> and paste it back to Claude.</p>
+<p class="mut" id="env"></p>
+
+<section>
+  <h2>1. Built-in Slovenian voice</h2>
+  <p class="mut">Lists the device's sl-SI voices. If there are none, check iOS Settings → Accessibility → Spoken Content → Voices → Slovenian, download a voice, then reload this page.</p>
+  <p>Result: <span class="res" id="ttsRes">checking…</span></p>
+  <select id="voiceSel"></select>
+  <input type="text" id="ttsText" value="Dober dan. Ali imate še kaj kruha? Midva greva jutri v hribe.">
+  <div class="row">
+    <button id="ttsNormal">Speak</button>
+    <button id="ttsSlow">Speak slow</button>
+  </div>
+  <div class="row">
+    <button id="rateGood">Sounds good</button>
+    <button id="rateOk">Usable</button>
+    <button id="rateBad">Bad</button>
+  </div>
+</section>
+
+<section>
+  <h2>2. Slovenian speech recognition</h2>
+  <p class="mut">Tap Listen, then say: <i>"Dober dan, ali imate kruh?"</i></p>
+  <p>Result: <span class="res" id="srRes">not tested</span></p>
+  <div id="transcript"></div>
+  <button id="srStart">Listen (sl-SI)</button>
+</section>
+
+<section>
+  <h2>3 + 4. Locked screen and headphone buttons</h2>
+  <p class="mut">This is the important one. Pick a mode, tap Start, <b>lock the phone straight away</b> and put it in your pocket. About every 10 s you'll hear a high beep (the "prompt"), a gap, then two low beeps (the "answer").
+  While it's running, try your headphone controls a few times: <b>double-tap / skip</b>, <b>triple-tap / back</b>, <b>pause and play</b>. Unlock after about 3 minutes and check the log.</p>
+  <button class="primary" id="lockA">Start A: audio clips, silences as audio (planned design)</button>
+  <button id="lockB">Start B: audio clips, silences as timers</button>
+  <button id="lockC">Start C: device voice (speechSynthesis)</button>
+  <button id="lockStop">Stop</button>
+  <p>A: <span class="res" id="resA">not run</span><br>B: <span class="res" id="resB">not run</span><br>C: <span class="res" id="resC">not run</span></p>
+  <p>Headphone events seen: <span class="res" id="hpRes">none yet</span></p>
+</section>
+
+<section>
+  <h2>Log</h2>
+  <button class="primary" id="copy">Copy report</button>
+  <button id="clear">Clear log</button>
+  <div id="log"></div>
+</section>
+
+<audio id="player" preload="auto" playsinline></audio>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const LS = 'm0spike.log.v1', LSR = 'm0spike.results.v1';
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  };
+  let lines = store.get(LS, []);
+  const results = store.get(LSR, {});
+  const t0 = performance.now();
+  const ts = () => new Date().toLocaleTimeString('en-GB', { hour12:false }) + '.' + String(Date.now()%1000).padStart(3,'0');
+  function log(msg) {
+    const line = `${ts()}  ${msg}`;
+    lines.push(line); if (lines.length > 600) lines = lines.slice(-600);
+    store.set(LS, lines);
+    const el = $('log'); el.textContent = lines.join('\n'); el.scrollTop = el.scrollHeight;
+  }
+  function setRes(key, text, ok) {
+    results[key] = text; store.set(LSR, results);
+    const el = $({tts:'ttsRes', sr:'srRes', A:'resA', B:'resB', C:'resC', hp:'hpRes'}[key]);
+    if (el) { el.textContent = text; el.className = 'res ' + (ok === true ? 'ok' : ok === false ? 'bad' : ''); }
+  }
+  for (const [k, v] of Object.entries(results)) setRes(k, v);
+  $('log').textContent = lines.join('\n');
+
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  $('env').textContent = `${navigator.userAgent}  ·  ${standalone ? 'home-screen app' : 'browser tab'}`;
+  log(`--- page load (${standalone ? 'standalone' : 'tab'}) ---`);
+
+  document.addEventListener('visibilitychange', () => log(`visibility: ${document.visibilityState}`));
+  addEventListener('pagehide', () => log('pagehide'));
+  addEventListener('pageshow', e => log(`pageshow (persisted=${e.persisted})`));
+
+  // ---------- 1. TTS voices ----------
+  const synth = window.speechSynthesis;
+  let slVoices = [];
+  function loadVoices() {
+    if (!synth) { setRes('tts', 'speechSynthesis not available', false); return; }
+    const all = synth.getVoices();
+    slVoices = all.filter(v => /^sl([-_]|$)/i.test(v.lang));
+    const sel = $('voiceSel'); sel.innerHTML = '';
+    (slVoices.length ? slVoices : all).forEach((v, i) => {
+      const o = document.createElement('option'); o.value = v.name;
+      o.textContent = `${v.name} (${v.lang})${v.localService ? '' : ' [network]'}`; sel.appendChild(o);
+    });
+    if (all.length) {
+      const names = slVoices.map(v => `${v.name}/${v.lang}`).join(', ');
+      setRes('tts', slVoices.length ? `${slVoices.length} sl voice(s): ${names}` : `no sl voice (${all.length} voices total)`, slVoices.length > 0);
+      log(`voices: ${all.length} total; sl: ${names || 'none'}`);
+    }
+  }
+  if (synth) { loadVoices(); synth.addEventListener?.('voiceschanged', loadVoices); setTimeout(loadVoices, 1000); }
+  function speak(text, rate, onEnd) {
+    const u = new SpeechSynthesisUtterance(text);
+    const v = synth.getVoices().find(v => v.name === $('voiceSel').value) || slVoices[0];
+    if (v) u.voice = v; u.lang = v ? v.lang : 'sl-SI'; u.rate = rate;
+    u.onend = () => onEnd && onEnd(); u.onerror = e => { log(`tts error: ${e.error}`); onEnd && onEnd(); };
+    synth.speak(u);
+    return u;
+  }
+  $('ttsNormal').onclick = () => { synth.cancel(); speak($('ttsText').value, 1); log('tts: speak normal'); };
+  $('ttsSlow').onclick = () => { synth.cancel(); speak($('ttsText').value, 0.7); log('tts: speak slow'); };
+  for (const [id, label] of [['rateGood','good'],['rateOk','usable'],['rateBad','bad']])
+    $(id).onclick = () => {
+      const base = (results.tts || '').replace(/ \| quality:.*$/, '');
+      setRes('tts', `${base} | quality: ${label} (${$('voiceSel').value})`, label !== 'bad');
+      log(`tts quality rated: ${label}`);
+    };
+
+  // ---------- 2. Speech recognition ----------
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) setRes('sr', 'SpeechRecognition API not available', false);
+  $('srStart').onclick = () => {
+    if (!SR) return;
+    const r = new SR(); r.lang = 'sl-SI'; r.interimResults = true; r.continuous = false; r.maxAlternatives = 3;
+    let got = '';
+    r.onstart = () => { log('sr: start'); $('transcript').textContent = '…listening'; };
+    r.onresult = e => {
+      got = Array.from(e.results).map(x => x[0].transcript).join(' ');
+      $('transcript').textContent = got;
+      const last = e.results[e.results.length - 1];
+      if (last.isFinal) log(`sr final: "${got}" (conf ${last[0].confidence?.toFixed?.(2)}) alts: ${Array.from(last).map(a => a.transcript).join(' | ')}`);
+    };
+    r.onerror = e => { log(`sr error: ${e.error} ${e.message || ''}`); setRes('sr', `error: ${e.error}`, false); };
+    r.onend = () => { log('sr: end'); if (got) setRes('sr', `heard: "${got}"`, true); else if (!results.sr?.startsWith('error')) setRes('sr', 'nothing recognised', false); };
+    try { r.start(); } catch (err) { log(`sr start threw: ${err}`); setRes('sr', `start threw: ${err.message}`, false); }
+  };
+
+  // ---------- 3/4. Locked-screen playback ----------
+  function wav(segments, sr = 22050) {
+    const n = Math.round(segments.reduce((s, x) => s + x.d, 0) * sr);
+    const buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    const w = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+    w(0,'RIFF'); v.setUint32(4, 36 + n*2, true); w(8,'WAVE'); w(12,'fmt ');
+    v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,sr,true);
+    v.setUint32(28,sr*2,true); v.setUint16(32,2,true); v.setUint16(34,16,true); w(36,'data'); v.setUint32(40,n*2,true);
+    let i = 0;
+    for (const seg of segments) {
+      const len = Math.round(seg.d * sr);
+      for (let k = 0; k < len; k++, i++) {
+        const env = Math.min(1, k / 200, (len - k) / 200);
+        const s = seg.f ? Math.sin(2 * Math.PI * seg.f * k / sr) * 0.35 * env : 0;
+        v.setInt16(44 + i*2, s * 32767, true);
+      }
+    }
+    return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+  }
+  const clips = {
+    prompt: wav([{f:880,d:0.6}]),
+    answer: wav([{f:440,d:0.3},{f:0,d:0.15},{f:440,d:0.3}]),
+    sil4:   wav([{f:0,d:4}]),
+    sil3:   wav([{f:0,d:3}]),
+  };
+  const player = $('player');
+  let run = null; // {mode, steps, i, startedAt, timer, events}
+  const STEPS = 18; // ~10 s each ≈ 3 min
+
+  function buildQueue(mode) {
+    const q = [];
+    for (let s = 1; s <= STEPS; s++) {
+      q.push({ kind:'clip', name:'prompt', step:s });
+      q.push(mode === 'A' ? { kind:'clip', name:'sil4', step:s } : { kind:'wait', ms:4000, step:s });
+      q.push({ kind:'clip', name:'answer', step:s });
+      q.push(mode === 'A' ? { kind:'clip', name:'sil3', step:s } : { kind:'wait', ms:3000, step:s });
+    }
+    return q;
+  }
+  function expectedOffset(idx) { // seconds from start, using clip durations
+    if (run.mode === 'C') return (Date.now() - run.startedAt) / 1000; // speech has no fixed timing
+    const dur = { prompt:0.6, answer:0.75, sil4:4, sil3:3 };
+    let t = 0; for (let k = 0; k < idx; k++) { const it = run.queue[k]; t += it.kind === 'clip' ? dur[it.name] : it.ms/1000; } return t;
+  }
+  function next() {
+    if (!run) return;
+    const idx = run.i++;
+    if (idx >= run.queue.length) return finish('completed');
+    const it = run.queue[idx];
+    const actual = (Date.now() - run.startedAt) / 1000, exp = expectedOffset(idx);
+    if (it.kind === 'clip' && it.name === 'prompt' || it.kind === 'utter')
+      log(`[${run.mode}] step ${it.step}/${STEPS} at +${actual.toFixed(1)}s (expected +${exp.toFixed(1)}s, drift ${(actual-exp).toFixed(1)}s) vis=${document.visibilityState}`);
+    run.lastStep = it.step; run.maxDrift = Math.max(run.maxDrift, actual - exp);
+    if (it.kind === 'clip') {
+      player.src = clips[it.name];
+      player.play().catch(err => { log(`[${run.mode}] play() rejected at step ${it.step}: ${err.name}`); });
+    } else if (it.kind === 'wait') {
+      run.timer = setTimeout(next, it.ms);
+    } else if (it.kind === 'utter') {
+      speak(it.text, 1, () => { run && (run.timer = setTimeout(next, 3000)); });
+    }
+  }
+  player.addEventListener('ended', () => next());
+  player.addEventListener('pause', () => { if (run && !player.ended) log(`[${run.mode}] audio paused (vis=${document.visibilityState})`); });
+  player.addEventListener('error', () => log(`audio error: ${player.error && player.error.code}`));
+
+  function finish(why) {
+    if (!run) return;
+    clearTimeout(run.timer);
+    const { mode, lastStep, maxDrift } = run;
+    const ok = why === 'completed' && maxDrift < 3;
+    setRes(mode, `${why}: reached step ${lastStep}/${STEPS}, max drift ${maxDrift.toFixed(1)}s`, ok);
+    log(`[${mode}] ${why}. last step ${lastStep}, max drift ${maxDrift.toFixed(1)}s`);
+    run = null; player.pause();
+    if (synth) synth.cancel();
+  }
+
+  function start(mode) {
+    if (run) finish('stopped (restarted)');
+    if (synth) synth.cancel();
+    run = { mode, i: 0, startedAt: Date.now(), timer: null, lastStep: 0, maxDrift: 0 };
+    if (mode === 'C') {
+      const words = ['ena','dva','tri','štiri','pet','šest','sedem','osem','devet','deset','enajst','dvanajst','trinajst','štirinajst','petnajst','šestnajst','sedemnajst','osemnajst'];
+      run.queue = words.slice(0, STEPS).map((w, k) => ({ kind:'utter', text:`Korak ${w}. Dober dan.`, step:k+1 }));
+      run.expectedPer = null;
+    } else {
+      run.queue = buildQueue(mode);
+    }
+    setRes(mode, 'running… lock the phone now');
+    log(`[${mode}] START`);
+    setupMediaSession(mode);
+    next();
+  }
+
+  // ---------- Media Session / headphone buttons ----------
+  const hpSeen = new Set(results.hp && results.hp !== 'none yet' ? results.hp.split(', ') : []);
+  function hp(action) {
+    hpSeen.add(action); setRes('hp', [...hpSeen].join(', '), true);
+    log(`HEADPHONE/LOCKSCREEN: ${action} (vis=${document.visibilityState}, running=${run ? run.mode : 'no'})`);
+  }
+  function setupMediaSession(mode) {
+    if (!('mediaSession' in navigator)) { log('mediaSession API not available'); return; }
+    navigator.mediaSession.metadata = new MediaMetadata({ title: `Spike test ${mode}`, artist: 'Slovenian walking trainer', album: 'M0' });
+    const acts = {
+      play: () => { hp('play'); player.play().catch(()=>{}); navigator.mediaSession.playbackState = 'playing'; },
+      pause: () => { hp('pause'); player.pause(); navigator.mediaSession.playbackState = 'paused'; },
+      nexttrack: () => hp('nexttrack'),
+      previoustrack: () => hp('previoustrack'),
+      seekforward: () => hp('seekforward'),
+      seekbackward: () => hp('seekbackward'),
+      stop: () => hp('stop'),
+    };
+    for (const [a, fn] of Object.entries(acts)) {
+      try { navigator.mediaSession.setActionHandler(a, fn); } catch (e) { log(`mediaSession: '${a}' unsupported`); }
+    }
+    navigator.mediaSession.playbackState = 'playing';
+  }
+
+  $('lockA').onclick = () => start('A');
+  $('lockB').onclick = () => start('B');
+  $('lockC').onclick = () => start('C');
+  $('lockStop').onclick = () => finish('stopped by user');
+
+  // ---------- Report ----------
+  $('copy').onclick = async () => {
+    const report = [
+      'M0 SPIKE REPORT', `UA: ${navigator.userAgent}`, `Mode: ${standalone ? 'home-screen app' : 'browser tab'}`,
+      `1 TTS: ${results.tts || '-'}`, `2 SR: ${results.sr || '-'}`,
+      `3A: ${results.A || '-'}`, `3B: ${results.B || '-'}`, `3C: ${results.C || '-'}`, `4 Headphone: ${results.hp || '-'}`,
+      '', '--- log ---', ...lines,
+    ].join('\n');
+    try { await navigator.clipboard.writeText(report); log('report copied'); alert('Report copied. Paste it to Claude.'); }
+    catch { const ta = document.createElement('textarea'); ta.value = report; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); alert('Report copied (fallback).'); }
+  };
+  $('clear').onclick = () => { if (confirm('Clear log and results?')) { lines = []; store.set(LS, []); store.set(LSR, {}); location.reload(); } };
+})();
+</script>
+</body>
+</html>
