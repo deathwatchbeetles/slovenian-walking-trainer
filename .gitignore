@@ -1,4 +1,5 @@
 slovenian-app-brief.md
 .DS_Store
+.env
 tools/.cache/
 .claude/

@@ -9,31 +9,93 @@ plus one shadowing file per dialogue and a few spoken cues, and audio/manifest.j
 Silences are baked into the files so the phone only switches clips about every 10-30 s
 (M0 showed each switch costs ~0.6 s with the screen locked).
 
-Voices: currently the macOS `say` voices as a stand-in. To move to a neural provider,
-replace synth() only; everything else works on raw PCM.
+Voices: Azure neural voices (Petra and Rok for Slovenian) when AZURE_SPEECH_KEY is set in
+.env or the environment; otherwise the robotic macOS `say` voice as a stand-in.
 
-Usage: python3 tools/build_audio.py
+Usage: python3 tools/build_audio.py [--dry-run]   (--dry-run only reports which voice engine would be used)
 """
-import array, hashlib, json, re, subprocess, sys, wave
+import array, hashlib, json, os, re, subprocess, sys, time, urllib.error, urllib.request, wave
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parent.parent
-CACHE = ROOT / "tools" / ".cache"
+# Cache lives outside the project: the project folder is on Google Drive, where many small writes are slow.
+CACHE = Path.home() / "Library" / "Caches" / "slovenian-walking-trainer"
 OUT = ROOT / "audio"
-SR = 22050
-ENGINE = "macos-say-standin"
-VOICE = {"sl": "Tina", "en": "Samantha"}
-RATE = {("sl", False): 150, ("sl", True): 105, ("en", False): 175, ("en", True): 150}
+SR = 24000
+
+
+def read_env() -> dict:
+    env = {}
+    f = ROOT / ".env"
+    if f.exists():
+        for line in f.read_text(encoding="utf-8").splitlines():
+            if "=" in line and not line.strip().startswith("#"):
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip().strip("'\"")
+    return env
+
+
+ENV = read_env()
+AZURE_KEY = os.environ.get("AZURE_SPEECH_KEY") or ENV.get("AZURE_SPEECH_KEY", "")
+AZURE_REGION = os.environ.get("AZURE_SPEECH_REGION") or ENV.get("AZURE_SPEECH_REGION", "westeurope")
+ENGINE = "azure-neural" if AZURE_KEY else "macos-say-standin"
+
+# macOS stand-in (one Slovenian voice only)
+SAY_VOICE = {"sl": "Tina", "en": "Samantha"}
+SAY_RATE = {("sl", False): 150, ("sl", True): 105, ("en", False): 175, ("en", True): 150}
+# Azure neural voices: Petra (f) and Rok (m) are the two native sl-SI voices.
+AZ_VOICE = {("sl", "f"): "sl-SI-PetraNeural", ("sl", "m"): "sl-SI-RokNeural",
+            ("en", "f"): "en-GB-SoniaNeural", ("en", "m"): "en-GB-SoniaNeural"}
+AZ_RATE = {("sl", False): "-5%", ("sl", True): "-25%", ("en", False): "0%", ("en", True): "0%"}
+_last_call = [0.0]
+
+
+def azure_tts(text: str, lang: str, slow: bool, speaker: str, dest: Path) -> None:
+    voice, rate = AZ_VOICE[(lang, speaker)], AZ_RATE[(lang, slow)]
+    ssml = (f"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='{voice[:5]}'>"
+            f"<voice name='{voice}'><prosody rate='{rate}'>{escape(text)}</prosody></voice></speak>")
+    req = urllib.request.Request(
+        f"https://{AZURE_REGION}.tts.speech.microsoft.com/cognitiveservices/v1", data=ssml.encode("utf-8"),
+        headers={"Ocp-Apim-Subscription-Key": AZURE_KEY, "Content-Type": "application/ssml+xml",
+                 "X-Microsoft-OutputFormat": "riff-24khz-16bit-mono-pcm", "User-Agent": "walking-trainer-build"})
+    for attempt in range(8):
+        wait = 3.2 - (time.time() - _last_call[0])   # free tier allows 20 requests a minute
+        if wait > 0:
+            time.sleep(wait)
+        _last_call[0] = time.time()
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                data = r.read()
+            # Azure streams the WAV with placeholder sizes in the header; rewrite it properly.
+            i = data.find(b"data")
+            pcm = data[i + 8:] if i >= 0 else data
+            with wave.open(str(dest), "wb") as w:
+                w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm)
+            return
+        except urllib.error.HTTPError as e:
+            if e.code == 429 or e.code >= 500:
+                time.sleep(15 * (attempt + 1)); continue
+            if e.code in (401, 403):
+                sys.exit(f"\nAzure refused the key (HTTP {e.code}). Check AZURE_SPEECH_KEY and AZURE_SPEECH_REGION in .env.")
+            sys.exit(f"\nAzure error HTTP {e.code} for: {text!r}")
+    sys.exit("\nAzure kept rate-limiting; try again later.")
 
 
 def synth(text: str, lang: str, slow: bool = False, speaker: str = "f") -> bytes:
-    """Return trimmed 16-bit mono PCM at SR for `text`. `speaker` is unused until there are two voices."""
-    voice, rate = VOICE[lang], RATE[(lang, slow)]
-    key = hashlib.sha1(f"{ENGINE}|{voice}|{rate}|{text}".encode()).hexdigest()
+    """Return trimmed 16-bit mono PCM at SR for `text`."""
+    if ENGINE == "azure-neural":
+        ident = f"{AZ_VOICE[(lang, speaker)]}|{AZ_RATE[(lang, slow)]}"
+    else:
+        ident = f"{SAY_VOICE[lang]}|{SAY_RATE[(lang, slow)]}"
+    key = hashlib.sha1(f"{ENGINE}|{SR}|{ident}|{text}".encode()).hexdigest()
     f = CACHE / f"{key}.wav"
     if not f.exists():
-        subprocess.run(["say", "-v", voice, "-r", str(rate), "-o", str(f), "--file-format=WAVE",
-                        f"--data-format=LEI16@{SR}", text], check=True)
+        if ENGINE == "azure-neural":
+            azure_tts(text, lang, slow, speaker, f)
+        else:
+            subprocess.run(["say", "-v", SAY_VOICE[lang], "-r", str(SAY_RATE[(lang, slow)]), "-o", str(f),
+                            "--file-format=WAVE", f"--data-format=LEI16@{SR}", text], check=True)
     with wave.open(str(f)) as w:
         assert w.getframerate() == SR and w.getnchannels() == 1 and w.getsampwidth() == 2
         pcm = w.readframes(w.getnframes())
@@ -119,6 +181,9 @@ def build_shadow(did: str, sents: list) -> dict:
 
 
 def main():
+    print(f"Voice engine: {ENGINE}" + (f" (region {AZURE_REGION})" if AZURE_KEY else ""))
+    if "--dry-run" in sys.argv:
+        return
     CACHE.mkdir(parents=True, exist_ok=True); OUT.mkdir(exist_ok=True)
     for old in OUT.glob("*.m4a"):
         old.unlink()
