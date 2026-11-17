@@ -1,1 +1,44 @@
-<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=spike/"><title>Slovenian walking trainer</title><a href="spike/">M0 audio spike</a>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Slovenščina">
+<meta name="theme-color" content="#000000">
+<title>Slovenian walking trainer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="home">
+  <h1>Slovenščina</h1>
+  <p id="nextInfo" class="mut">Loading…</p>
+  <button id="start" class="big primary" disabled>Start walk</button>
+  <label class="mut" for="pick">Or choose a dialogue</label>
+  <select id="pick"></select>
+  <button id="flagsBtn" class="small" hidden>Copy flagged sentences</button>
+  <p class="mut foot">Headphones: skip = Again · back = previous card · play/pause. No press means "I knew it".<br><span id="engine"></span></p>
+</main>
+
+<main id="walk" hidden>
+  <div class="top">
+    <span id="block">Review</span>
+    <span id="progress">1 / 40</span>
+  </div>
+  <div id="card">
+    <div id="line1"></div>
+    <div id="line2"></div>
+  </div>
+  <button id="again" class="big primary">Again</button>
+  <div class="row">
+    <button id="pause">Pause</button>
+    <button id="flag">Flag</button>
+    <button id="end">End</button>
+  </div>
+</main>
+
+<audio id="player" preload="auto" playsinline></audio>
+<script type="module" src="app.js"></script>
+</body>
+</html>

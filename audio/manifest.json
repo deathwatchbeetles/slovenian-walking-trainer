@@ -1,0 +1,904 @@
+{
+ "engine": "macos-say-standin",
+ "dialogues": [
+  {
+   "id": "w01-d01",
+   "title": "Meeting a neighbour",
+   "week": 1,
+   "sentences": [
+    "w01-d01-s01",
+    "w01-d01-s02",
+    "w01-d01-s03",
+    "w01-d01-s04",
+    "w01-d01-s05",
+    "w01-d01-s06",
+    "w01-d01-s07",
+    "w01-d01-s08",
+    "w01-d01-s09",
+    "w01-d01-s10"
+   ],
+   "shadow": {
+    "file": "w01-d01.shadow.m4a",
+    "dur": 32.81
+   },
+   "cue": {
+    "file": "w01-d01.cue.m4a",
+    "dur": 2.99
+   }
+  },
+  {
+   "id": "w01-d02",
+   "title": "At the café",
+   "week": 1,
+   "sentences": [
+    "w01-d02-s01",
+    "w01-d02-s02",
+    "w01-d02-s03",
+    "w01-d02-s04",
+    "w01-d02-s05",
+    "w01-d02-s06",
+    "w01-d02-s07",
+    "w01-d02-s08",
+    "w01-d02-s09",
+    "w01-d02-s10"
+   ],
+   "shadow": {
+    "file": "w01-d02.shadow.m4a",
+    "dur": 36.65
+   },
+   "cue": {
+    "file": "w01-d02.cue.m4a",
+    "dur": 3.02
+   }
+  },
+  {
+   "id": "w01-d03",
+   "title": "At the bakery",
+   "week": 1,
+   "sentences": [
+    "w01-d03-s01",
+    "w01-d03-s02",
+    "w01-d03-s03",
+    "w01-d03-s04",
+    "w01-d03-s05",
+    "w01-d03-s06",
+    "w01-d03-s07",
+    "w01-d03-s08",
+    "w01-d03-s09",
+    "w01-d03-s10"
+   ],
+   "shadow": {
+    "file": "w01-d03.shadow.m4a",
+    "dur": 41.01
+   },
+   "cue": {
+    "file": "w01-d03.cue.m4a",
+    "dur": 2.99
+   }
+  },
+  {
+   "id": "w01-d04",
+   "title": "Family small talk",
+   "week": 1,
+   "sentences": [
+    "w01-d04-s01",
+    "w01-d04-s02",
+    "w01-d04-s03",
+    "w01-d04-s04",
+    "w01-d04-s05",
+    "w01-d04-s06",
+    "w01-d04-s07",
+    "w01-d04-s08",
+    "w01-d04-s09",
+    "w01-d04-s10"
+   ],
+   "shadow": {
+    "file": "w01-d04.shadow.m4a",
+    "dur": 39.5
+   },
+   "cue": {
+    "file": "w01-d04.cue.m4a",
+    "dur": 3.51
+   }
+  },
+  {
+   "id": "w01-d05",
+   "title": "Making a plan",
+   "week": 1,
+   "sentences": [
+    "w01-d05-s01",
+    "w01-d05-s02",
+    "w01-d05-s03",
+    "w01-d05-s04",
+    "w01-d05-s05",
+    "w01-d05-s06",
+    "w01-d05-s07",
+    "w01-d05-s08",
+    "w01-d05-s09",
+    "w01-d05-s10"
+   ],
+   "shadow": {
+    "file": "w01-d05.shadow.m4a",
+    "dur": 35.41
+   },
+   "cue": {
+    "file": "w01-d05.cue.m4a",
+    "dur": 3.08
+   }
+  }
+ ],
+ "cards": {
+  "w01-d01-s01": {
+   "sl": "Dober dan!",
+   "en": "Hello, good day.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d01-s01.intro.m4a",
+    "dur": 10.2
+   },
+   "recall": {
+    "file": "w01-d01-s01.recall.m4a",
+    "dur": 6.94,
+    "reveal": 4.36
+   }
+  },
+  "w01-d01-s02": {
+   "sl": "Kako ste?",
+   "en": "How are you?",
+   "hint": "formal",
+   "note": "ste is 'you are', formal or plural. Unlike Russian, the verb 'to be' is always said in the present.",
+   "intro": {
+    "file": "w01-d01-s02.intro.m4a",
+    "dur": 18.27
+   },
+   "recall": {
+    "file": "w01-d01-s02.recall.m4a",
+    "dur": 6.65,
+    "reveal": 4.18
+   }
+  },
+  "w01-d01-s03": {
+   "sl": "Dobro, hvala. In vi?",
+   "en": "Fine, thank you. And you?",
+   "hint": null,
+   "note": "'And' is in.",
+   "intro": {
+    "file": "w01-d01-s03.intro.m4a",
+    "dur": 28.19
+   },
+   "recall": {
+    "file": "w01-d01-s03.recall.m4a",
+    "dur": 12.02,
+    "reveal": 6.87
+   }
+  },
+  "w01-d01-s04": {
+   "sl": "Tudi dobro, hvala.",
+   "en": "Also fine, thank you.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d01-s04.intro.m4a",
+    "dur": 15.58
+   },
+   "recall": {
+    "file": "w01-d01-s04.recall.m4a",
+    "dur": 10.11,
+    "reveal": 5.92
+   }
+  },
+  "w01-d01-s05": {
+   "sl": "Jaz sem Ana.",
+   "en": "I am Ana.",
+   "hint": null,
+   "note": "Slovenian needs the verb: jaz sem, I am. You can drop jaz, but never sem.",
+   "intro": {
+    "file": "w01-d01-s05.intro.m4a",
+    "dur": 21.11
+   },
+   "recall": {
+    "file": "w01-d01-s05.recall.m4a",
+    "dur": 7.11,
+    "reveal": 4.08
+   }
+  },
+  "w01-d01-s06": {
+   "sl": "Kako vam je ime?",
+   "en": "What is your name?",
+   "hint": "formal",
+   "note": "Literally 'how to you is name'. The little words vam and je always sit in second position.",
+   "intro": {
+    "file": "w01-d01-s06.intro.m4a",
+    "dur": 26.14
+   },
+   "recall": {
+    "file": "w01-d01-s06.recall.m4a",
+    "dur": 7.97,
+    "reveal": 4.95
+   }
+  },
+  "w01-d01-s07": {
+   "sl": "Ime mi je Marko.",
+   "en": "My name is Marko.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d01-s07.intro.m4a",
+    "dur": 14.77
+   },
+   "recall": {
+    "file": "w01-d01-s07.recall.m4a",
+    "dur": 7.83,
+    "reveal": 4.61
+   }
+  },
+  "w01-d01-s08": {
+   "sl": "Me veseli.",
+   "en": "Pleased to meet you.",
+   "hint": null,
+   "note": "Literally 'it gladdens me'.",
+   "intro": {
+    "file": "w01-d01-s08.intro.m4a",
+    "dur": 14.45
+   },
+   "recall": {
+    "file": "w01-d01-s08.recall.m4a",
+    "dur": 6.49,
+    "reveal": 3.97
+   }
+  },
+  "w01-d01-s09": {
+   "sl": "Kje živite?",
+   "en": "Where do you live?",
+   "hint": "formal",
+   "note": null,
+   "intro": {
+    "file": "w01-d01-s09.intro.m4a",
+    "dur": 9.53
+   },
+   "recall": {
+    "file": "w01-d01-s09.recall.m4a",
+    "dur": 7.13,
+    "reveal": 4.61
+   }
+  },
+  "w01-d01-s10": {
+   "sl": "Živim v Ljubljani.",
+   "en": "I live in Ljubljana.",
+   "hint": null,
+   "note": "Locative after v, as in Russian: Ljubljana becomes v Ljubljani.",
+   "intro": {
+    "file": "w01-d01-s10.intro.m4a",
+    "dur": 25.07
+   },
+   "recall": {
+    "file": "w01-d01-s10.recall.m4a",
+    "dur": 8.28,
+    "reveal": 4.86
+   }
+  },
+  "w01-d02-s01": {
+   "sl": "Izvolite?",
+   "en": "What can I get you?",
+   "hint": null,
+   "note": "Izvolite is what staff say to invite your order. It also means 'here you are' when handing something over.",
+   "intro": {
+    "file": "w01-d02-s01.intro.m4a",
+    "dur": 19.33
+   },
+   "recall": {
+    "file": "w01-d02-s01.recall.m4a",
+    "dur": 6.65,
+    "reveal": 4.11
+   }
+  },
+  "w01-d02-s02": {
+   "sl": "Eno kavo, prosim.",
+   "en": "One coffee, please.",
+   "hint": null,
+   "note": "Accusative: ena kava becomes eno kavo.",
+   "intro": {
+    "file": "w01-d02-s02.intro.m4a",
+    "dur": 24.05
+   },
+   "recall": {
+    "file": "w01-d02-s02.recall.m4a",
+    "dur": 9.92,
+    "reveal": 5.7
+   }
+  },
+  "w01-d02-s03": {
+   "sl": "Z mlekom ali brez?",
+   "en": "With milk or without?",
+   "hint": null,
+   "note": "Instrumental after z, as in Russian: z mlekom. And ali means 'or'.",
+   "intro": {
+    "file": "w01-d02-s03.intro.m4a",
+    "dur": 26.43
+   },
+   "recall": {
+    "file": "w01-d02-s03.recall.m4a",
+    "dur": 8.78,
+    "reveal": 5.0
+   }
+  },
+  "w01-d02-s04": {
+   "sl": "Z mlekom, prosim.",
+   "en": "With milk, please.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d02-s04.intro.m4a",
+    "dur": 14.52
+   },
+   "recall": {
+    "file": "w01-d02-s04.recall.m4a",
+    "dur": 9.32,
+    "reveal": 5.33
+   }
+  },
+  "w01-d02-s05": {
+   "sl": "Še kaj?",
+   "en": "Anything else?",
+   "hint": null,
+   "note": "še is 'more' or 'still'. kaj is 'what', and also 'something'.",
+   "intro": {
+    "file": "w01-d02-s05.intro.m4a",
+    "dur": 16.62
+   },
+   "recall": {
+    "file": "w01-d02-s05.recall.m4a",
+    "dur": 6.11,
+    "reveal": 3.7
+   }
+  },
+  "w01-d02-s06": {
+   "sl": "Ja, en čaj in eno vodo.",
+   "en": "Yes, one tea and one water.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d02-s06.intro.m4a",
+    "dur": 28.68
+   },
+   "recall": {
+    "file": "w01-d02-s06.recall.m4a",
+    "dur": 12.04,
+    "reveal": 6.83
+   }
+  },
+  "w01-d02-s07": {
+   "sl": "Koliko je to?",
+   "en": "How much is that?",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d02-s07.intro.m4a",
+    "dur": 10.29
+   },
+   "recall": {
+    "file": "w01-d02-s07.recall.m4a",
+    "dur": 6.87,
+    "reveal": 4.17
+   }
+  },
+  "w01-d02-s08": {
+   "sl": "Pet evrov, prosim.",
+   "en": "Five euros, please.",
+   "hint": null,
+   "note": "From five up, genitive plural, as in Russian: pet evrov.",
+   "intro": {
+    "file": "w01-d02-s08.intro.m4a",
+    "dur": 23.97
+   },
+   "recall": {
+    "file": "w01-d02-s08.recall.m4a",
+    "dur": 9.78,
+    "reveal": 5.7
+   }
+  },
+  "w01-d02-s09": {
+   "sl": "Izvolite.",
+   "en": "Here you are.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d02-s09.intro.m4a",
+    "dur": 9.3
+   },
+   "recall": {
+    "file": "w01-d02-s09.recall.m4a",
+    "dur": 6.16,
+    "reveal": 3.65
+   }
+  },
+  "w01-d02-s10": {
+   "sl": "Hvala lepa. Na svidenje!",
+   "en": "Thank you very much. Goodbye!",
+   "hint": null,
+   "note": "Na svidenje is built just like the Russian goodbye. Hvala lepa is literally 'beautiful thanks'.",
+   "intro": {
+    "file": "w01-d02-s10.intro.m4a",
+    "dur": 33.42
+   },
+   "recall": {
+    "file": "w01-d02-s10.recall.m4a",
+    "dur": 11.89,
+    "reveal": 6.84
+   }
+  },
+  "w01-d03-s01": {
+   "sl": "Dobro jutro!",
+   "en": "Good morning!",
+   "hint": null,
+   "note": "jutro is morning. Careful: jutri means tomorrow.",
+   "intro": {
+    "file": "w01-d03-s01.intro.m4a",
+    "dur": 17.96
+   },
+   "recall": {
+    "file": "w01-d03-s01.recall.m4a",
+    "dur": 6.68,
+    "reveal": 3.87
+   }
+  },
+  "w01-d03-s02": {
+   "sl": "Ali imate kruh?",
+   "en": "Do you have bread?",
+   "hint": null,
+   "note": "Here ali opens a yes or no question. And Slovenian uses a normal verb for 'to have': imam, imate.",
+   "intro": {
+    "file": "w01-d03-s02.intro.m4a",
+    "dur": 26.84
+   },
+   "recall": {
+    "file": "w01-d03-s02.recall.m4a",
+    "dur": 7.98,
+    "reveal": 4.59
+   }
+  },
+  "w01-d03-s03": {
+   "sl": "Ja, imamo bel in črn kruh.",
+   "en": "Yes, we have white and dark bread.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d03-s03.intro.m4a",
+    "dur": 31.99
+   },
+   "recall": {
+    "file": "w01-d03-s03.recall.m4a",
+    "dur": 13.01,
+    "reveal": 7.29
+   }
+  },
+  "w01-d03-s04": {
+   "sl": "En bel kruh, prosim.",
+   "en": "One white bread, please.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d03-s04.intro.m4a",
+    "dur": 18.73
+   },
+   "recall": {
+    "file": "w01-d03-s04.recall.m4a",
+    "dur": 10.38,
+    "reveal": 5.97
+   }
+  },
+  "w01-d03-s05": {
+   "sl": "Imate tudi rogljičke?",
+   "en": "Do you also have croissants?",
+   "hint": null,
+   "note": "rogljiček is a little horn, a croissant.",
+   "intro": {
+    "file": "w01-d03-s05.intro.m4a",
+    "dur": 26.59
+   },
+   "recall": {
+    "file": "w01-d03-s05.recall.m4a",
+    "dur": 9.97,
+    "reveal": 5.84
+   }
+  },
+  "w01-d03-s06": {
+   "sl": "Ne, danes nimamo rogljičkov.",
+   "en": "No, today we don't have any croissants.",
+   "hint": null,
+   "note": "nimamo is 'we don't have', and it takes the genitive, like the Russian 'there is no': nimamo rogljičkov.",
+   "intro": {
+    "file": "w01-d03-s06.intro.m4a",
+    "dur": 42.74
+   },
+   "recall": {
+    "file": "w01-d03-s06.recall.m4a",
+    "dur": 13.46,
+    "reveal": 7.75
+   }
+  },
+  "w01-d03-s07": {
+   "sl": "Potem pa dva bureka.",
+   "en": "Then two bureks.",
+   "hint": null,
+   "note": "This is the dual. Two of anything has its own ending: dva bureka.",
+   "intro": {
+    "file": "w01-d03-s07.intro.m4a",
+    "dur": 24.18
+   },
+   "recall": {
+    "file": "w01-d03-s07.recall.m4a",
+    "dur": 8.43,
+    "reveal": 4.86
+   }
+  },
+  "w01-d03-s08": {
+   "sl": "Je to vse?",
+   "en": "Is that everything?",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d03-s08.intro.m4a",
+    "dur": 9.59
+   },
+   "recall": {
+    "file": "w01-d03-s08.recall.m4a",
+    "dur": 6.44,
+    "reveal": 3.9
+   }
+  },
+  "w01-d03-s09": {
+   "sl": "Ja, to je vse, hvala.",
+   "en": "Yes, that's everything, thank you.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d03-s09.intro.m4a",
+    "dur": 22.0
+   },
+   "recall": {
+    "file": "w01-d03-s09.recall.m4a",
+    "dur": 12.59,
+    "reveal": 7.34
+   }
+  },
+  "w01-d03-s10": {
+   "sl": "Hvala in lep dan!",
+   "en": "Thank you, and have a nice day!",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d03-s10.intro.m4a",
+    "dur": 16.32
+   },
+   "recall": {
+    "file": "w01-d03-s10.recall.m4a",
+    "dur": 9.21,
+    "reveal": 5.66
+   }
+  },
+  "w01-d04-s01": {
+   "sl": "Ali imate otroke?",
+   "en": "Do you have children?",
+   "hint": "formal",
+   "note": null,
+   "intro": {
+    "file": "w01-d04-s01.intro.m4a",
+    "dur": 17.12
+   },
+   "recall": {
+    "file": "w01-d04-s01.recall.m4a",
+    "dur": 9.59,
+    "reveal": 5.82
+   }
+  },
+  "w01-d04-s02": {
+   "sl": "Ja, imam sina in hčerko.",
+   "en": "Yes, I have a son and a daughter.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d04-s02.intro.m4a",
+    "dur": 31.19
+   },
+   "recall": {
+    "file": "w01-d04-s02.recall.m4a",
+    "dur": 12.65,
+    "reveal": 7.09
+   }
+  },
+  "w01-d04-s03": {
+   "sl": "Koliko sta stara?",
+   "en": "How old are they?",
+   "hint": "the two of them",
+   "note": "Dual again: sta is 'the two of them are', and stara has the dual ending. For three or more it would be so stari.",
+   "intro": {
+    "file": "w01-d04-s03.intro.m4a",
+    "dur": 28.23
+   },
+   "recall": {
+    "file": "w01-d04-s03.recall.m4a",
+    "dur": 9.49,
+    "reveal": 5.84
+   }
+  },
+  "w01-d04-s04": {
+   "sl": "Sin je star pet let.",
+   "en": "My son is five years old.",
+   "hint": null,
+   "note": "False friend: leto is a year, not summer. Summer is poletje.",
+   "intro": {
+    "file": "w01-d04-s04.intro.m4a",
+    "dur": 30.93
+   },
+   "recall": {
+    "file": "w01-d04-s04.recall.m4a",
+    "dur": 9.83,
+    "reveal": 5.73
+   }
+  },
+  "w01-d04-s05": {
+   "sl": "Hčerka pa tri leta.",
+   "en": "And my daughter is three.",
+   "hint": null,
+   "note": "pa marks a contrast and comes second. Three and four take leta; five and up take let.",
+   "intro": {
+    "file": "w01-d04-s05.intro.m4a",
+    "dur": 28.34
+   },
+   "recall": {
+    "file": "w01-d04-s05.recall.m4a",
+    "dur": 9.26,
+    "reveal": 5.28
+   }
+  },
+  "w01-d04-s06": {
+   "sl": "Imate tudi psa?",
+   "en": "Do you also have a dog?",
+   "hint": "formal",
+   "note": null,
+   "intro": {
+    "file": "w01-d04-s06.intro.m4a",
+    "dur": 15.02
+   },
+   "recall": {
+    "file": "w01-d04-s06.recall.m4a",
+    "dur": 9.01,
+    "reveal": 5.69
+   }
+  },
+  "w01-d04-s07": {
+   "sl": "Ne, nimam psa. Imam mačko.",
+   "en": "No, I don't have a dog. I have a cat.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d04-s07.intro.m4a",
+    "dur": 28.4
+   },
+   "recall": {
+    "file": "w01-d04-s07.recall.m4a",
+    "dur": 14.5,
+    "reveal": 8.31
+   }
+  },
+  "w01-d04-s08": {
+   "sl": "Kje delate?",
+   "en": "Where do you work?",
+   "hint": "formal",
+   "note": "delati means to work, not just to do.",
+   "intro": {
+    "file": "w01-d04-s08.intro.m4a",
+    "dur": 15.98
+   },
+   "recall": {
+    "file": "w01-d04-s08.recall.m4a",
+    "dur": 7.22,
+    "reveal": 4.7
+   }
+  },
+  "w01-d04-s09": {
+   "sl": "Delam doma.",
+   "en": "I work at home.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d04-s09.intro.m4a",
+    "dur": 9.64
+   },
+   "recall": {
+    "file": "w01-d04-s09.recall.m4a",
+    "dur": 6.46,
+    "reveal": 3.91
+   }
+  },
+  "w01-d04-s10": {
+   "sl": "Imate lepo družino.",
+   "en": "You have a lovely family.",
+   "hint": "formal",
+   "note": "False friend: družina means family.",
+   "intro": {
+    "file": "w01-d04-s10.intro.m4a",
+    "dur": 24.37
+   },
+   "recall": {
+    "file": "w01-d04-s10.recall.m4a",
+    "dur": 9.82,
+    "reveal": 6.02
+   }
+  },
+  "w01-d05-s01": {
+   "sl": "Koliko je ura?",
+   "en": "What time is it?",
+   "hint": null,
+   "note": "ura is both hour and clock. Literally 'how much is the hour'.",
+   "intro": {
+    "file": "w01-d05-s01.intro.m4a",
+    "dur": 20.75
+   },
+   "recall": {
+    "file": "w01-d05-s01.recall.m4a",
+    "dur": 7.07,
+    "reveal": 4.14
+   }
+  },
+  "w01-d05-s02": {
+   "sl": "Ura je tri.",
+   "en": "It's three o'clock.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d05-s02.intro.m4a",
+    "dur": 9.49
+   },
+   "recall": {
+    "file": "w01-d05-s02.recall.m4a",
+    "dur": 6.36,
+    "reveal": 3.88
+   }
+  },
+  "w01-d05-s03": {
+   "sl": "Imaš danes čas?",
+   "en": "Do you have time today?",
+   "hint": "informal",
+   "note": "False friend: čas is time in general, not an hour. An hour is ura.",
+   "intro": {
+    "file": "w01-d05-s03.intro.m4a",
+    "dur": 27.78
+   },
+   "recall": {
+    "file": "w01-d05-s03.recall.m4a",
+    "dur": 10.17,
+    "reveal": 6.24
+   }
+  },
+  "w01-d05-s04": {
+   "sl": "Danes nimam časa.",
+   "en": "Today I don't have time.",
+   "hint": null,
+   "note": "Genitive after nimam: čas becomes časa.",
+   "intro": {
+    "file": "w01-d05-s04.intro.m4a",
+    "dur": 26.44
+   },
+   "recall": {
+    "file": "w01-d05-s04.recall.m4a",
+    "dur": 9.3,
+    "reveal": 5.42
+   }
+  },
+  "w01-d05-s05": {
+   "sl": "Kaj pa jutri?",
+   "en": "And what about tomorrow?",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d05-s05.intro.m4a",
+    "dur": 10.55
+   },
+   "recall": {
+    "file": "w01-d05-s05.recall.m4a",
+    "dur": 7.09,
+    "reveal": 4.36
+   }
+  },
+  "w01-d05-s06": {
+   "sl": "Jutri imam čas.",
+   "en": "Tomorrow I have time.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d05-s06.intro.m4a",
+    "dur": 13.27
+   },
+   "recall": {
+    "file": "w01-d05-s06.recall.m4a",
+    "dur": 8.66,
+    "reveal": 5.09
+   }
+  },
+  "w01-d05-s07": {
+   "sl": "Greva na kavo?",
+   "en": "Shall we go for a coffee?",
+   "hint": "the two of us",
+   "note": "greva is 'the two of us go'. With three or more people it is gremo.",
+   "intro": {
+    "file": "w01-d05-s07.intro.m4a",
+    "dur": 23.26
+   },
+   "recall": {
+    "file": "w01-d05-s07.recall.m4a",
+    "dur": 9.09,
+    "reveal": 5.94
+   }
+  },
+  "w01-d05-s08": {
+   "sl": "Ja, z veseljem.",
+   "en": "Yes, with pleasure.",
+   "hint": null,
+   "note": null,
+   "intro": {
+    "file": "w01-d05-s08.intro.m4a",
+    "dur": 14.31
+   },
+   "recall": {
+    "file": "w01-d05-s08.recall.m4a",
+    "dur": 9.24,
+    "reveal": 5.35
+   }
+  },
+  "w01-d05-s09": {
+   "sl": "Ob petih pri meni?",
+   "en": "At five, at my place?",
+   "hint": null,
+   "note": "Clock times use ob plus locative: ob petih, at five.",
+   "intro": {
+    "file": "w01-d05-s09.intro.m4a",
+    "dur": 24.69
+   },
+   "recall": {
+    "file": "w01-d05-s09.recall.m4a",
+    "dur": 8.98,
+    "reveal": 5.41
+   }
+  },
+  "w01-d05-s10": {
+   "sl": "Velja. Se vidiva jutri!",
+   "en": "Deal. See you tomorrow!",
+   "hint": null,
+   "note": "se vidiva is dual again: 'the two of us see each other'.",
+   "intro": {
+    "file": "w01-d05-s10.intro.m4a",
+    "dur": 29.34
+   },
+   "recall": {
+    "file": "w01-d05-s10.recall.m4a",
+    "dur": 10.75,
+    "reveal": 6.08
+   }
+  }
+ },
+ "cues": {
+  "review": {
+   "file": "cue.review.m4a",
+   "dur": 4.72
+  },
+  "recall": {
+   "file": "cue.recall.m4a",
+   "dur": 2.13
+  },
+  "again": {
+   "file": "cue.again.m4a",
+   "dur": 3.07
+  },
+  "shadow": {
+   "file": "cue.shadow.m4a",
+   "dur": 4.2
+  },
+  "done": {
+   "file": "cue.done.m4a",
+   "dur": 2.26
+  }
+ }
+}
