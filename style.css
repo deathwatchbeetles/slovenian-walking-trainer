@@ -23,3 +23,16 @@ select { width: 100%; min-height: 52px; font-size: 18px; background: #1d1d1d; co
 .row { display: flex; gap: 10px; }
 .row button { flex: 1; font-size: 18px; }
 #flag.on { background: #7a1f1f; }
+
+/* v3: section chips, transport row, resume */
+#walk button.big { min-height: 20dvh; }
+.top { align-items: center; gap: 10px; }
+#sections { display: flex; flex-wrap: wrap; gap: 6px; }
+#sections button { min-height: 40px; padding: 0 12px; border-radius: 20px; font-size: 14px; font-weight: 700;
+                   text-transform: uppercase; letter-spacing: .03em; background: #1d1d1d; color: var(--mut); }
+#sections button.on { background: var(--acc); color: #000; }
+#progress { white-space: nowrap; font-size: 15px; }
+#line2 { white-space: pre-line; }
+button.minor { min-height: 48px; font-size: 16px; font-weight: 600; background: #1b1b1b; color: #ccc; }
+button.link { background: none; min-height: 0; padding: 0; color: var(--mut); font-size: 14px; font-weight: 400; text-decoration: underline; }
+label.mut { margin-bottom: -8px; font-size: 14px; }

@@ -177,6 +177,17 @@ def build_intro(s: dict) -> dict:
     return write(f"{s['id']}.intro.m4a", pcm)
 
 
+def build_question(did: str, n: int, q: dict) -> dict:
+    """Direct method: a Slovenian question, silence to answer aloud, then a model answer to repeat."""
+    ask = synth(q["sl"], "sl", speaker="f")
+    ans = synth(q["answer"], "sl", speaker="m")
+    g1 = max(3.5, dur(ans) * 1.7 + 2.0)
+    pcm = sil(0.3) + ask + sil(g1) + ans + sil(repeat_gap(ans))
+    info = write(f"{did}.q{n:02d}.m4a", pcm)
+    info.update(reveal=round(0.3 + dur(ask) + g1, 2), sl=q["sl"], en=q["en"], answer=q["answer"], answer_en=q["answer_en"])
+    return info
+
+
 def build_shadow(did: str, sents: list) -> dict:
     once = b"".join(synth(s["sl"], "sl", speaker=s["speaker"]) + sil(0.45) for s in sents)
     return write(f"{did}.shadow.m4a", sil(0.4) + once + sil(1.5) + once + sil(0.8))
@@ -204,12 +215,14 @@ def main():
             manifest["dialogues"].append({
                 "id": d["id"], "title": d["title"], "week": data["week"], "sentences": [s["id"] for s in sents],
                 "shadow": build_shadow(d["id"], sents),
+                "questions": [build_question(d["id"], n + 1, q) for n, q in enumerate(d.get("questions", []))],
                 "cue": write(f"{d['id']}.cue.m4a", sil(0.4) + synth(f"New dialogue. {d['title']}.", "en") + sil(0.8)),
             })
     cues = {
         "review": "Review. Say each sentence in Slovenian before you hear it.",
         "recall": "Now from memory.",
         "again": "Once more, in a different order.",
+        "questions": "Now questions in Slovenian. Answer aloud, in a full sentence.",
         "shadow": "Now the whole dialogue, twice. Speak along.",
         "done": "Session complete.",
     }
