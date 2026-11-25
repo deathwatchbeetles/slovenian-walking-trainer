@@ -4,7 +4,10 @@
 
 const $ = id => document.getElementById(id);
 const player = $('player');
-const STORE = 'swt.m1.v1', SESSION = 'swt.session.v1';
+// An edition page (e.g. class/index.html) points at its own audio folder and keeps its own progress.
+const AUDIO = document.documentElement.dataset.audio || 'audio/';
+const PREFIX = document.documentElement.dataset.store || 'swt';
+const STORE = `${PREFIX}.m1.v1`, SESSION = `${PREFIX}.session.v1`;
 const state = load();
 let manifest, queue = [], pos = 0, session = null, pendingSeek = null;
 const blobs = new Map(); // file -> object URL, filled in the background so a signal drop doesn't stall a walk
@@ -103,13 +106,13 @@ $('flagsBtn').onclick = () => copy(JSON.stringify(state.flags, null, 1), 'Flagge
 $('logBtn').onclick = () => copy(`${navigator.userAgent}\n${state.log.join('\n')}`, 'Control log');
 
 // ---------- playback ----------
-const src = it => blobs.get(it.file) || `audio/${it.file}`;
+const src = it => blobs.get(it.file) || `${AUDIO}${it.file}`;
 async function prefetch(token) {
   for (let i = pos; i < queue.length; i++) {
     if (session !== token) return;
     const f = queue[i].file;
     if (blobs.has(f)) continue;
-    try { const r = await fetch(`audio/${f}`); if (r.ok) blobs.set(f, URL.createObjectURL(await r.blob())); } catch {}
+    try { const r = await fetch(`${AUDIO}${f}`); if (r.ok) blobs.set(f, URL.createObjectURL(await r.blob())); } catch {}
   }
 }
 function tryPlay(retries = 2) {
@@ -277,7 +280,7 @@ tap('pause', 'pause', togglePause);
 tap('flag', 'flag', flag);
 $('end').onclick = () => { if (confirm('End this walk? You can resume it later.')) finish(false); };
 
-fetch('audio/manifest.json', { cache: 'no-cache' })
+fetch(`${AUDIO}manifest.json`, { cache: 'no-cache' })
   .then(r => r.json())
   .then(m => { manifest = m; renderHome(); })
   .catch(() => { $('nextInfo').textContent = 'Could not load audio manifest. Check your connection and reload.'; });

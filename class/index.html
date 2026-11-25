@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-audio="../audio-class/" data-store="swtclass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Slovenščina">
+<meta name="theme-color" content="#000000">
+<title>Slovenian walking trainer</title>
+<link rel="stylesheet" href="../style.css?v=4">
+</head>
+<body>
+<main id="home">
+  <h1>Slovenščina</h1>
+  <p id="nextInfo" class="mut">Loading…</p>
+  <button id="start" class="big primary" disabled>Start walk</button>
+  <button id="restart" class="small" hidden>Start this dialogue from the beginning</button>
+  <label class="mut" for="pick">Dialogue</label>
+  <select id="pick"></select>
+  <label class="mut" for="skipMeans">Headphone skip button</label>
+  <select id="skipMeans">
+    <option value="again">Again: repeat the answer, see the card again soon</option>
+    <option value="next">Next: jump to the next card</option>
+  </select>
+  <button id="flagsBtn" class="small" hidden>Copy flagged sentences</button>
+  <p class="mut foot">No press means "I knew it". Headphone back = restart the card; twice = previous card.<br><span id="engine"></span>
+    <button id="logBtn" class="link">Copy control log</button></p>
+</main>
+
+<main id="walk" hidden>
+  <div class="top">
+    <div id="sections"></div>
+    <span id="progress">1 / 40</span>
+  </div>
+  <div id="card">
+    <div id="line1"></div>
+    <div id="line2"></div>
+  </div>
+  <button id="again" class="big primary">Again</button>
+  <div class="row">
+    <button id="back" aria-label="Back">⏮ Back</button>
+    <button id="pause">Pause</button>
+    <button id="skip" aria-label="Next card">Next ⏭</button>
+  </div>
+  <div class="row">
+    <button id="flag" class="minor">Flag sentence</button>
+    <button id="end" class="minor">End walk</button>
+  </div>
+</main>
+
+<audio id="player" preload="auto" playsinline></audio>
+<script type="module" src="../app.js?v=4"></script>
+</body>
+</html>

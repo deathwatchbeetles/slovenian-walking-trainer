@@ -12,7 +12,9 @@ Silences are baked into the files so the phone only switches clips about every 1
 Voices: Azure neural voices (Petra and Rok for Slovenian) when AZURE_SPEECH_KEY is set in
 .env or the environment; otherwise the robotic macOS `say` voice as a stand-in.
 
-Usage: python3 tools/build_audio.py [--dry-run]   (--dry-run only reports which voice engine would be used)
+Usage: python3 tools/build_audio.py [--edition class] [--dry-run]
+  --edition NAME  apply content/NAME-overrides.json and write to audio-NAME/ (served by NAME/index.html)
+  --dry-run       only report which voice engine and edition would be used
 """
 import array, hashlib, http.client, json, os, re, subprocess, sys, time, urllib.error, urllib.request, wave
 from pathlib import Path
@@ -195,14 +197,31 @@ def build_shadow(did: str, sents: list) -> dict:
 
 def main():
     print(f"Voice engine: {ENGINE}" + (f" (region {AZURE_REGION})" if AZURE_KEY else ""))
+    global OUT
+    edition = sys.argv[sys.argv.index("--edition") + 1] if "--edition" in sys.argv else None
+    over = {"dialogues": {}, "sentences": {}}
+    if edition:
+        OUT = ROOT / f"audio-{edition}"
+        over = json.loads((ROOT / "content" / f"{edition}-overrides.json").read_text(encoding="utf-8"))
+        print(f"Edition: {edition} -> {OUT.name}/")
     if "--dry-run" in sys.argv:
         return
     CACHE.mkdir(parents=True, exist_ok=True); OUT.mkdir(exist_ok=True)
     for old in OUT.glob("*.m4a"):
         old.unlink()
     manifest = {"engine": ENGINE, "dialogues": [], "cards": {}, "cues": {}}
-    for f in sorted((ROOT / "content").glob("week*.json")):
+    files = sorted((ROOT / "content").glob("week*.json"))
+    if edition:                                          # edition-only dialogues, e.g. class-week03.json
+        files += sorted((ROOT / "content").glob(f"{edition}-week*.json"))
+    for f in files:
         data = json.loads(f.read_text(encoding="utf-8"))
+        for s in data["sentences"]:                      # edition overrides: replace fields per sentence
+            s.update(over["sentences"].get(s["id"], {}))
+        for d in data["dialogues"]:
+            o = over["dialogues"].get(d["id"], {})
+            d["title"] = o.get("title", d["title"])
+            for i, q in o.get("questions", {}).items():  # replace individual questions by index
+                d["questions"][int(i)] = q
         for d in data["dialogues"]:
             sents = [s for s in data["sentences"] if s["dialogue"] == d["id"]]
             for s in sents:
